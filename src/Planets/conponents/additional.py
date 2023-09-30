@@ -56,7 +56,9 @@ def result_df_preprocessing(data):
     data["Planet Mass or Mass*sin(i) Provenance"] = data["Planet Mass or Mass*sin(i) Provenance"].map(pl_bmassprov_map)
     data['Stellar Metallicity Ratio'] = data['Stellar Metallicity Ratio'].replace(st_metratio_key_change)
     data["Stellar Metallicity Ratio"] = data["Stellar Metallicity Ratio"].map(st_metratio_mapping)
+
     data.drop(["RA [sexagesimal]","Discovery Facility","Dec [sexagesimal]","Host Name","Discovery Method"],axis=1,inplace=True)
+    
     data["Planet Name"] = encode_categorical_data(data["Planet Name"])   
     
     # Return the preprocessed DataFrame instead of saving it to a CSV file
