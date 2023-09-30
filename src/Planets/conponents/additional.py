@@ -1,6 +1,10 @@
+# LIBRARIES
 from common import encode_categorical_data
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
+
+
+# Filling missing values with median
 def fill_missing_with_median(df):
     numerical_cols = df.select_dtypes(include=['number']).columns
     df_copy = df.copy()  # Create a copy of the DataFrame
@@ -11,8 +15,7 @@ def fill_missing_with_median(df):
 
     return df_copy
 
-# Define a custom transformer for most frequent categorical value imputation
-
+# Custom transformer for most frequent categorical value imputation
 def fill_missing_with_frequency(df):
     categorical_cols = df.select_dtypes(exclude=['number']).columns
     df_copy = df.copy()  # Create a copy of the DataFrame containing categorical columns
@@ -23,8 +26,10 @@ def fill_missing_with_frequency(df):
 
     return df_copy 
 
-
+# Necessary preprocessing
 def result_df_preprocessing(data):
+    
+    # Dictionaries
     pl_bmassprov_map = {
         'M-R relationship':1,
         'Msin(i)/sin(i)': 2,
@@ -47,6 +52,7 @@ def result_df_preprocessing(data):
         'Fe_H_Non':5
     }
 
+    # Mapping, Replacing and Label Encoding
     data["Planet Mass or Mass*sin(i) Provenance"] = data["Planet Mass or Mass*sin(i) Provenance"].map(pl_bmassprov_map)
     data['Stellar Metallicity Ratio'] = data['Stellar Metallicity Ratio'].replace(st_metratio_key_change)
     data["Stellar Metallicity Ratio"] = data["Stellar Metallicity Ratio"].map(st_metratio_mapping)

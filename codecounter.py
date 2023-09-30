@@ -1,5 +1,7 @@
 import os
 
+
+# This function counts lines in the files that have .ipynb .py extensions
 def count_lines_in_files_with_extensions(extensions):
     total_lines = 0
 
