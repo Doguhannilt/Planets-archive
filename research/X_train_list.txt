@@ -1,0 +1,57 @@
+Number of Stars
+Number of Planets
+Discovery Year
+Controversial Flag
+Orbital Period [days]
+Orbital Period Upper Unc. [days]
+Orbital Period Lower Unc. [days]
+Orbital Period Limit Flag
+Orbit Semi-Major Axis [au]
+Orbit Semi-Major Axis Limit Flag
+Planet Radius [Earth Radius]
+Planet Radius Limit Flag
+Planet Radius [Jupiter Radius]
+Planet Radius Limit Flag
+Planet Mass or Mass*sin(i) [Earth Mass]
+Planet Mass or Mass*sin(i) [Earth Mass] Limit Flag
+Planet Mass or Mass*sin(i) [Jupiter Mass]
+Planet Mass or Mass*sin(i) [Jupiter Mass] Limit Flag
+Planet Mass or Mass*sin(i) Provenance
+Eccentricity
+Eccentricity Limit Flag
+Data show Transit Timing Variations
+Stellar Effective Temperature [K]
+Stellar Effective Temperature Upper Unc. [K]
+Stellar Effective Temperature Lower Unc. [K]
+Stellar Effective Temperature Limit Flag
+Stellar Radius [Solar Radius]
+Stellar Radius Upper Unc. [Solar Radius]
+Stellar Radius Lower Unc. [Solar Radius]
+Stellar Radius Limit Flag
+Stellar Mass [Solar mass]
+Stellar Mass Upper Unc. [Solar mass]
+Stellar Mass Lower Unc. [Solar mass]
+Stellar Mass Limit Flag
+Stellar Metallicity [dex]
+Stellar Metallicity Upper Unc. [dex]
+Stellar Metallicity Lower Unc. [dex]
+Stellar Metallicity Limit Flag
+Stellar Metallicity Ratio
+Stellar Surface Gravity [log10(cm/s**2)]
+Stellar Surface Gravity Upper Unc. [log10(cm/s**2)]
+Stellar Surface Gravity Lower Unc. [log10(cm/s**2)]
+Stellar Surface Gravity Limit Flag
+RA [deg]
+Dec [deg]
+Distance [pc]
+Distance [pc] Upper Unc
+Distance [pc] Lower Unc
+V (Johnson) Magnitude
+V (Johnson) Magnitude Upper Unc
+V (Johnson) Magnitude Lower Unc
+Ks (2MASS) Magnitude
+Ks (2MASS) Magnitude Upper Unc
+Ks (2MASS) Magnitude Lower Unc
+Gaia Magnitude
+Gaia Magnitude Upper Unc
+Gaia Magnitude Lower Unc
