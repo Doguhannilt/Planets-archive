@@ -12,7 +12,7 @@ class DataIngestionConfig:
     X_test_data_path: str = os.path.join(base_data_path, 'X_test.csv')
     y_test_data_path: str = os.path.join(base_data_path, 'y_test.csv')
     y_train_data_path: str = os.path.join(base_data_path, 'y_train.csv')
-
+    raw_data_path: str = os.path.join(base_data_path, 'data.csv')
 
 class Data:
     def __init__(self):
@@ -28,7 +28,7 @@ class Data:
         data = pd.read_csv("C:/Users/doguy/Desktop/Planets/artifacts/data.csv")
 
         #Save the dataset as csv file into "artifacts" folder
-        os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
+        os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)
         data.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
 
 
