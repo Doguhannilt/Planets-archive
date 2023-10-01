@@ -6,6 +6,11 @@ from sklearn.preprocessing import LabelEncoder
 
 # Filling missing values with median
 def fill_missing_with_median(df):
+
+    '''
+    Custom Median Imputation
+    '''
+
     numerical_cols = df.select_dtypes(include=['number']).columns
     df_copy = df.copy()  # Create a copy of the DataFrame
     
@@ -17,6 +22,11 @@ def fill_missing_with_median(df):
 
 # Custom transformer for most frequent categorical value imputation
 def fill_missing_with_frequency(df):
+
+    '''
+    Custom Categorical Frequency Imputation
+    '''
+
     categorical_cols = df.select_dtypes(exclude=['number']).columns
     df_copy = df.copy()  # Create a copy of the DataFrame containing categorical columns
     
@@ -29,6 +39,10 @@ def fill_missing_with_frequency(df):
 # Necessary preprocessing
 def result_df_preprocessing(data):
     
+    '''
+    The function is related to data_transformation.py and applying necessary preprocessing for "result_df"
+    '''
+
     # Dictionaries
     pl_bmassprov_map = {
         'M-R relationship':1,
