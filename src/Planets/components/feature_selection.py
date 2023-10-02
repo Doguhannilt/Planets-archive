@@ -1,5 +1,3 @@
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
 import pandas as pd
 
 X_train = pd.read_csv("../../../artifacts/X_train.csv")
