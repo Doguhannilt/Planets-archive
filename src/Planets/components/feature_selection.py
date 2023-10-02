@@ -7,7 +7,8 @@ y_train = pd.read_csv("../../../artifacts/y_train.csv")
 threshold=0.7
 
 
-# find and remove correlated features
+# Find and remove correlated features
+# Note: This function is provided by Krish Naik [Feature Engineering YouTube Playlist]
 def correlation(dataset, threshold):
     col_corr = set()  # Set of all the names of correlated columns
     corr_matrix = dataset.corr()
