@@ -34,4 +34,3 @@ def splitting_median(data):
     data.fillna[data.median()]
     return data
 
-splitting_median())

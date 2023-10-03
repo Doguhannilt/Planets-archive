@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import os
 from sklearn.model_selection import train_test_split # Dividing into X_train, X_test, y_train,y_test
 import zipfile
+from feature_selection_app import FeatureSelection
 
 @dataclass
 class DataIngestionConfig:
@@ -28,14 +29,14 @@ class Data:
         data = pd.read_csv("C:/Users/doguy/Desktop/Planets/artifacts/data.csv")
 
         #Save the dataset as csv file into "artifacts" folder
-        os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)
+        os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path ),exist_ok=True)
         data.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
 
 
 class DataIngestion:
     def __init__(self):
         self.ingestion_config=DataIngestionConfig()
-
+        self.feature_selection = FeatureSelection()
     def initiate_data_ingestion(self):
             
         os.makedirs(self.ingestion_config.base_data_path, exist_ok=True)
@@ -49,6 +50,9 @@ class DataIngestion:
 
         # Splitting
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+
+        self.feature_selection.Featuremoving(X_train,X_test)
+        self.feature_selection.drop_columns_containing_names(X_train,X_test)
 
         # Save them as csv file
         X_train.to_csv(self.ingestion_config.X_train_data_path,index=False,header=True)
