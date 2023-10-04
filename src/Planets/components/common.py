@@ -15,17 +15,6 @@ def rename_columns(data_df, long_name_series):
     data_df.rename(columns=column_name_mapping, inplace=True)
 
 
-# Label Encoding for our dependent column
-def encode_categorical_data(y):
-
-    # Initialize the LabelEncoder
-    label_encoder = LabelEncoder()
-    
-    # Fit the encoder to your categorical data and transform it
-    y_encoded = label_encoder.fit_transform(y)
-    
-    return y_encoded
-
 def splitting_median(data):
     """
     My computer is not enough to make the whole proccess for NaN values, I am going to create a 

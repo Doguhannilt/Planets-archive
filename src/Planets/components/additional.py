@@ -1,8 +1,5 @@
 # LIBRARIES
-from common import encode_categorical_data
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-
 
 # Filling missing values with median
 def fill_missing_with_median(df):
@@ -71,8 +68,7 @@ def result_df_preprocessing(data):
     data['Stellar Metallicity Ratio'] = data['Stellar Metallicity Ratio'].replace(st_metratio_key_change)
     data["Stellar Metallicity Ratio"] = data["Stellar Metallicity Ratio"].map(st_metratio_mapping)
 
-    data.drop(["RA [sexagesimal]","Discovery Facility","Dec [sexagesimal]","Host Name","Discovery Method","Spectral Type"],axis=1,inplace=True)
-    data["Planet Name"] = encode_categorical_data(data["Planet Name"])   
+    data.drop(["RA [sexagesimal]","Discovery Facility","Dec [sexagesimal]","Host Name","Discovery Method","Spectral Type"],axis=1,inplace=True)  
     
     # Return the preprocessed DataFrame instead of saving it to a CSV file
     return data

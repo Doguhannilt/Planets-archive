@@ -32,4 +32,4 @@ class transformation:
         result_df = result_df_preprocessing(result_df) # Other necessary preprocessing
 
         # Saving the dataset as csv file
-        result_df.to_csv(os.path.join(self.ingestion_config.base_data_path, "designed_data.csv"))
+        result_df.to_csv(os.path.join(self.ingestion_config.base_data_path,"designed_data.csv"))

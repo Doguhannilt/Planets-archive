@@ -27,9 +27,13 @@ class Data:
 
         # Read the row dataset
         data = pd.read_csv("C:/Users/doguy/Desktop/Planets/artifacts/data.csv")
-
+        try:
+            os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path ),exist_ok=True)
+        
+        except PermissionError as e:
+            print(f"PermissionError: {e}")
         #Save the dataset as csv file into "artifacts" folder
-        os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path ),exist_ok=True)
+
         data.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
 
 
