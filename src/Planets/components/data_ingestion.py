@@ -4,7 +4,10 @@ from dataclasses import dataclass
 import os
 from sklearn.model_selection import train_test_split # Dividing into X_train, X_test, y_train,y_test
 import zipfile
-from feature_selection_app import FeatureSelection
+import numpy as np
+from data_transformation import CosineSimilarityCalculator,scaling
+
+
 
 @dataclass
 class DataIngestionConfig:
@@ -13,54 +16,35 @@ class DataIngestionConfig:
     X_test_data_path: str = os.path.join(base_data_path, 'X_test.csv')
     y_test_data_path: str = os.path.join(base_data_path, 'y_test.csv')
     y_train_data_path: str = os.path.join(base_data_path, 'y_train.csv')
-    raw_data_path: str = os.path.join(base_data_path, 'data.csv')
-
-class Data:
-    def __init__(self):
-        self.ingestion_config=DataIngestionConfig()
-
-    # Extract the file from ZIP
-    def Dataextraction(self):
-        # Extract the zip file
-        with zipfile.ZipFile('C:/Users/doguy/Desktop/Planets/data.zip', 'r') as zip_ref:
-            zip_ref.extractall('C:/Users/doguy/Desktop/Planets/artifacts/')
-
-        # Read the row dataset
-        data = pd.read_csv("C:/Users/doguy/Desktop/Planets/artifacts/data.csv")
-        try:
-            os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path ),exist_ok=True)
-        
-        except PermissionError as e:
-            print(f"PermissionError: {e}")
-        #Save the dataset as csv file into "artifacts" folder
-
-        data.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
-
 
 class DataIngestion:
     def __init__(self):
-        self.ingestion_config=DataIngestionConfig()
-        self.feature_selection = FeatureSelection()
-    def initiate_data_ingestion(self):
-            
-        os.makedirs(self.ingestion_config.base_data_path, exist_ok=True)
-        
-        # Read the data
-        df = pd.read_csv(os.path.join(self.ingestion_config.base_data_path, 'designed_data.csv'))
+        self.ingestion_config = DataIngestionConfig()
+        self.tf_idf = CosineSimilarityCalculator()
+        self.scaling = scaling()
 
+    def initiate_data_ingestion(self):
+        
+        #DataFrame
+        df = pd.read_csv(os.path.join(self.ingestion_config.base_data_path, "processed_data.csv"))
+        
         # Independent columns and dependent column
-        X = df.drop("Planet Name", axis = 1)
-        y = df["Planet Name"]
+        X = df.drop("pl_name", axis = 1)
+        y = df["pl_name"]
+        
+        # Cosine Similarity
+        y = self.tf_idf.cosine(y)
 
         # Splitting
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        self.feature_selection.Featuremoving(X_train,X_test)
-        self.feature_selection.drop_columns_containing_names(X_train,X_test)
+        # Standardization
+        self.scaling.scale_and_export_data(X_train, X_test)
 
         # Save them as csv file
         X_train.to_csv(self.ingestion_config.X_train_data_path,index=False,header=True)
         X_test.to_csv(self.ingestion_config.X_test_data_path,index=False,header=True)
+ 
 
         y_train.to_csv(self.ingestion_config.y_train_data_path,index=False,header=True)
         y_test.to_csv(self.ingestion_config.y_test_data_path,index=False,header=True)
